@@ -1,0 +1,30 @@
+---
+interface TestimonialProps {
+  content: string;
+  userImage?: string; // Made optional
+  userName: string;
+  userDesignation?: string; // Made optional
+  featured?: boolean; // Optional boolean prop
+}
+
+const { content, userImage, userName, userDesignation, featured = false } = Astro.props;
+---
+
+<div class={`site-col ${featured ? 'col-12' : 'col-6'} site-scroll`}>
+  <div class="site-testimonial">
+    <p class="testimonial-content">{content}</p>
+    <div class="user-info">
+      <div class="user-image">
+        {userImage && (
+          <img src={userImage} width="70" height="70" alt={`${userName} Testimonial`} />
+        )}
+      </div>
+      <div class="user-name">
+        <h5>
+          {userName}
+          {userDesignation && <span class="user-designation"> {userDesignation}</span>}
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+testimonials:
+  - content: "I recently had the pleasure of working with Curve Chiropractic, and I must say, I am thoroughly impressed with their level of care and professionalism."
+    userImage: "img/user-1.jpg"
+    userName: "John Doe"
+    userDesignation: "Patient"
+    featured: true
+
+  - content: "The team at Curve Chiropractic is amazing! They helped me recover from a back injury, and I feel better than ever."
+    userImage: "img/user-2.jpg"
+    userName: "Jane Smith"
+    userDesignation: "Patient"
+
+  - content: "Curve Chiropractic has completely changed my life. Their personalized care and attention to detail are unmatched."
+    userImage: "img/user-3.jpg"
+    userName: "Emily Johnson"
+    userDesignation: "Patient"

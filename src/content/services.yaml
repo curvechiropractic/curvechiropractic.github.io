@@ -1,0 +1,30 @@
+services:
+  - title: Spinal Adjustments
+    description: Realign your spine to relieve pain, improve mobility, and enhance overall health with our expert spinal adjustment services.
+    buttonText: Learn More About Spinal Adjustments
+    imageSrc: img/icon-1.svg
+
+  - title: Posture Correction
+    description: Improve your posture and reduce strain on your body with our personalized posture correction programs.
+    buttonText: Explore Posture Correction
+    imageSrc: img/icon-1.svg
+
+  - title: Sports Injury Rehabilitation
+    description: Recover faster and get back to your active lifestyle with our specialized sports injury rehabilitation services.
+    buttonText: Discover Sports Injury Rehabilitation
+    imageSrc: img/icon-1.svg
+
+  - title: Prenatal Chiropractic Care
+    description: Experience safe and effective chiropractic care designed specifically for expectant mothers to alleviate pregnancy-related discomfort.
+    buttonText: Learn About Prenatal Chiropractic Care
+    imageSrc: img/icon-1.svg
+
+  - title: Pediatric Chiropractic Care
+    description: Gentle and effective chiropractic care for children to support their growth, development, and overall well-being.
+    buttonText: Explore Pediatric Chiropractic Care
+    imageSrc: img/icon-1.svg
+
+  - title: Wellness and Maintenance Care
+    description: Maintain your health and prevent future issues with our ongoing wellness and maintenance chiropractic services.
+    buttonText: Learn About Wellness Care
+    imageSrc: img/icon-1.svg
