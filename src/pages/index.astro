@@ -7,6 +7,7 @@ import Testimonial from '../components/Testimonial.astro';
 import { getServices } from '../utils/parseServices';
 import { getFaqs } from '../utils/parseFaq';
 import { getTestimonials } from '../utils/parseTestimonials';
+import { getContact } from '../utils/parseContact';
 
 const someProps = {
 	count: 0,
@@ -15,6 +16,7 @@ const someProps = {
 const services = getServices();
 const faqs = getFaqs();
 const testimonials = getTestimonials();
+const contact = getContact();
 ---
 
 <html lang="en">
@@ -174,17 +176,41 @@ const testimonials = getTestimonials();
 						<div class="site-col col-12">
 							<div class="ftr-nav ftr-contact">
 								<h6>Contact</h6>
-								<p>123 Wellness Street <br>Springfield, IL 62704</p>
+								{contact.address && contact.city && contact.state && contact.zip && (
+									<p>
+										{contact.address} <br />
+										{contact.city}, {contact.state} {contact.zip}
+									</p>
+								)}
 								<div class="ftr-contact">
-									<p><span class="icon"><img src="img/mobile-icon.svg" width="14" height="14" alt="Phone"></span> (555) 123-4567</p>
-									<p><span class="icon"><img src="img/email-icon.svg" width="14" height="14" alt="Email"></span> info@curvechiropractic.com</p>
+									{contact.phone && (
+										<p>
+											<span class="icon">
+												<img src="img/mobile-icon.svg" width="14" height="14" alt="Phone" />
+											</span>{" "}
+											{contact.phone}
+										</p>
+									)}
+									{contact.email && (
+										<p>
+											<span class="icon">
+												<img src="img/email-icon.svg" width="14" height="14" alt="Email" />
+											</span>{" "}
+											{contact.email}
+										</p>
+									)}
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="bottom-footer">
-						<p class="site-copyright"><span>© Curve Chiropractic. All Rights Reserved.</span> Site designed by <a href="https://www.rooseveltscaggs.com" target="_blank">Roosevelt Scaggs</a></p>
-						<a href="#" class="go-top" style="display: inline;">Back to Top <span class="arrow"></span></a>
+						<p class="site-copyright">
+							<span>© Curve Chiropractic. All Rights Reserved.</span> Site designed by{" "}
+							<a href="https://www.rooseveltscaggs.com" target="_blank">Roosevelt Scaggs</a>
+						</p>
+						<a href="#" class="go-top" style="display: inline;">
+							Back to Top <span class="arrow"></span>
+						</a>
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,8 @@
+contact:
+  # All fields are optional. Fields with the `#` prefix are commented out.
+  # address: "123 Wellness Street"
+  # city: "Springfield"
+  # state: "IL"
+  # zip: "62704"
+  phone: "(214) 697-3550"
+  email: "curvechirodc@gmail.com"
