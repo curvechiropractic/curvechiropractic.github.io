@@ -1550,7 +1550,7 @@ aside.sticky-nav li a:hover {
     font-weight: 400;
 }
 
-/** swiffy slider minified css starts here **/
+/** swiffy slider **/
 .swiffy-slider {
     position: relative;
     display: block;
@@ -2207,7 +2207,6 @@ aside.sticky-nav li a:hover {
     }
 }
 
-/** swiffy slider minified css ends here **/
 /** sectors section css **/
 .site-sector .section-heading h2 {
     font-size: 40px;
@@ -2596,6 +2595,48 @@ h3.card-title.h5 {
     100% {
         transform: translateX(-44px);
     }
+}
+
+@media (max-width: 800px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.video-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1.5rem;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.video-title {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 /** responsive css **/
