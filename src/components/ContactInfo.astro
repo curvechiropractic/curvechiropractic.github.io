@@ -1,0 +1,31 @@
+---
+const { contact } = Astro.props;
+---
+
+<div class="ftr-nav ftr-contact">
+  <h6>Contact</h6>
+  {contact.address && contact.city && contact.state && contact.zip && (
+    <p>
+      {contact.address} <br />
+      {contact.city}, {contact.state} {contact.zip}
+    </p>
+  )}
+  <div class="ftr-contact">
+    {contact.phone && (
+      <p>
+        <span class="icon">
+          <img src="img/mobile-icon.svg" width="14" height="14" alt="Phone" />
+        </span>{" "}
+        {contact.phone}
+      </p>
+    )}
+    {contact.email && (
+      <p>
+        <span class="icon">
+          <img src="img/email-icon.svg" width="14" height="14" alt="Email" />
+        </span>{" "}
+        {contact.email}
+      </p>
+    )}
+  </div>
+</div>
