@@ -1,20 +1,92 @@
 ---
 // filepath: /Users/rscaggs/Documents/git/CurveChiropractic/src/components/VideoCard.astro
 const { video } = Astro.props;
+
+let showModal = false;
+function openModal() {
+  showModal = true;
+}
+function closeModal(e) {
+  // Only close if clicking the overlay or close button
+  if (e.target.classList.contains('modal-overlay') || e.target.classList.contains('close-modal')) {
+    showModal = false;
+  }
+}
 ---
 
-<div class="video-card">
-  <div class="video-wrapper">
-    <iframe 
-      width="100%" 
-      height="200" 
-      src={video.url} 
-      title={video.title}
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+<style>
+  .video-card {
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+  .video-card:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  }
+  .video-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #eee;
+    margin-bottom: 0.75rem;
+  }
+  .modal-overlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-content {
+    background: #fff;
+    border-radius: 10px;
+    padding: 0;
+    max-width: 90vw;
+    max-height: 80vh;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .close-modal {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .modal-iframe {
+    width: 60vw;
+    max-width: 800px;
+    height: 34vw;
+    max-height: 450px;
+    border: none;
+    border-radius: 10px;
+    background: #000;
+  }
+  @media (max-width: 700px) {
+    .modal-iframe {
+      width: 90vw;
+      height: 50vw;
+      max-height: 60vw;
+    }
+  }
+</style>
+
+<div class="video-card" on:click={openModal} tabindex="0" aria-label={`Play video: ${video.title}`}>
+  <img
+    class="video-thumb"
+    src={`https://img.youtube.com/vi/${video.url.split('/embed/')[1]}/hqdefault.jpg`}
+    alt={`Thumbnail for ${video.title}`}
+    loading="lazy"
+  />
   <p class="video-title">{video.title}</p>
   {video.subtitle && (
     <p class="video-date" style="font-size: 0.95em; color: #888; margin-top: 0.25rem;">
@@ -22,3 +94,19 @@ const { video } = Astro.props;
     </p>
   )}
 </div>
+
+{showModal && (
+  <div class="modal-overlay" on:click={closeModal}>
+    <div class="modal-content">
+      <button class="close-modal" on:click={closeModal} aria-label="Close video modal">&times;</button>
+      <iframe
+        class="modal-iframe"
+        src={video.url}
+        title={video.title}
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+)}

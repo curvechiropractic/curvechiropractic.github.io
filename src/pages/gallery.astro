@@ -3,7 +3,7 @@ import SiteNav from '../components/SiteNav.astro';
 import { getVideos } from '../utils/parseVideos';
 import { getContact } from '../utils/parseContact';
 import ContactInfo from '../components/ContactInfo.astro';
-import VideoCard from '../components/VideoCard.astro';
+import VideoCard from '../components/VideoCard.jsx';
 
 const videos = getVideos();
 const contact = getContact();
@@ -15,7 +15,7 @@ const contact = getContact();
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="img/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="/img/favicon.ico" rel="icon" type="image/x-icon">
     <link rel="stylesheet" href="/css/skin.css" type="text/css" media="all" />
     <title>Gallery | Curve Chiropractic</title>
   </head>
@@ -24,7 +24,7 @@ const contact = getContact();
       <div class="main-header">
         <div class="d-flex justify-space-between align-items-center">
           <a class="site-logo" href="index.php">
-            <img src="img/logo.png" width="200px" alt="Curve Chiropractic Logo" />
+            <img src="/img/logo.png" width="200px" alt="Curve Chiropractic Logo" />
           </a>
           <SiteNav />
           <div class="hdr-btn">
@@ -42,7 +42,7 @@ const contact = getContact();
         </div>
         <div class="grid-container video-grid">
           {videos.map(video => (
-            <VideoCard video={video} />
+            <VideoCard video={video} client:load />
           ))}
         </div>
       </div>
