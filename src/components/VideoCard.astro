@@ -1,0 +1,24 @@
+---
+// filepath: /Users/rscaggs/Documents/git/CurveChiropractic/src/components/VideoCard.astro
+const { video } = Astro.props;
+---
+
+<div class="video-card">
+  <div class="video-wrapper">
+    <iframe 
+      width="100%" 
+      height="200" 
+      src={video.url} 
+      title={video.title}
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="video-title">{video.title}</p>
+  {video.subtitle && (
+    <p class="video-date" style="font-size: 0.95em; color: #888; margin-top: 0.25rem;">
+      {video.subtitle}
+    </p>
+  )}
+</div>
