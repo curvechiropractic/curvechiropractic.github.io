@@ -11,11 +11,12 @@ function extractYouTubeId(url) {
 export function getVideos() {
   const fileContent = fs.readFileSync("./src/content/videos.yaml", "utf-8");
   const data = parse(fileContent);
-  return data.videos.map((video) => {
-    const id = extractYouTubeId(video.url);
-    return {
-      ...video,
-      url: id ? `https://www.youtube.com/embed/${id}` : null,
-    };
-  });
+  return data.videos;
+  // return data.videos.map((video) => {
+  //   const id = extractYouTubeId(video.url);
+  //   return {
+  //     ...video,
+  //     url: id ? `https://www.youtube.com/embed/${id}` : null,
+  //   };
+  // });
 }

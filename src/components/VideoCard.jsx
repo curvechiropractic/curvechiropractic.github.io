@@ -5,13 +5,24 @@ function isMobile() {
   return window.matchMedia("(max-width: 700px)").matches;
 }
 
+function extractYouTubeId(url) {
+  if (!url) return null;
+  const regex =
+    /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
+}
+
 export default function VideoCard({ video }) {
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = (e) => {
-    // On mobile, open original YouTube link in new tab
+  const id = extractYouTubeId(video.url);
+  const embedURL = id ? `https://www.youtube.com/embed/${id}` : null;
+  const originalURL = id ? `https://www.youtube.com/watch?v=${id}` : video.url;
+
+  const openModal = () => {
     if (isMobile()) {
-      window.open(video.originalUrl || video.url, "_blank", "noopener,noreferrer");
+      window.open(originalURL, "_blank", "noopener,noreferrer");
       return;
     }
     setShowModal(true);
@@ -101,7 +112,7 @@ export default function VideoCard({ video }) {
       >
         <img
           className="video-thumb"
-          src={`https://img.youtube.com/vi/${video.url.split("/embed/")[1]}/hqdefault.jpg`}
+          src={id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : ""}
           alt={`Thumbnail for ${video.title}`}
           loading="lazy"
         />
@@ -119,7 +130,7 @@ export default function VideoCard({ video }) {
           </p>
         )}
       </div>
-      {showModal && (
+      {showModal && embedURL && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content">
             <button
@@ -131,7 +142,7 @@ export default function VideoCard({ video }) {
             </button>
             <iframe
               className="modal-iframe"
-              src={video.url + "?autoplay=1"}
+              src={embedURL + "?autoplay=1"}
               title={video.title}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
