@@ -1,9 +1,22 @@
 import React, { useState } from "react";
 
+function isMobile() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(max-width: 700px)").matches;
+}
+
 export default function VideoCard({ video }) {
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = () => setShowModal(true);
+  const openModal = (e) => {
+    // On mobile, open original YouTube link in new tab
+    if (isMobile()) {
+      window.open(video.originalUrl || video.url, "_blank", "noopener,noreferrer");
+      return;
+    }
+    setShowModal(true);
+  };
+
   const closeModal = (e) => {
     if (
       e.target.classList.contains("modal-overlay") ||
